@@ -91,4 +91,35 @@ const perguntas =[
     caixaPerguntas.textContent = perguntaAtual.enunciado;
     caixaAlternativas.textContent = "";
     mostraAlternativa();
+
+    function mostraPergunta(){
+        for(const alternativa of perguntaAtual.alternativas){
+            const botaoAlternativas = document.createElement("button");
+            botaoAlternativas.textContent = alternativa.texto;
+            botaoAlternativas.addEventListener("click",
+            ()=>respostaSelecionado(alternativa));
+            caixaAlternativas.appendChild(botaoAlternativas);
+        }
+     }
+     function respostaSelecionada(opcaoSelecionada) {
+        const afirmacoes = opcaoSelecionada.afirmacao;
+        historiaFinal += afirmacoes + " ";
+        atual ++;
+        mostraPergunta();
+      }
+     function mostraReseltado(){
+        caixaPerguntas.textContent = "De Acordo com suas respostas...";
+        textoResultado.textContent = historiaFinal;
+        caixaAlternativas.textContent = "";
+     }
+
+    mostraPergunta();
+
+
+
+
+
+
  }
+
+
